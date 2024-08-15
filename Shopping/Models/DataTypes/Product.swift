@@ -9,7 +9,7 @@ import Foundation
 
 struct Product: Codable {
     let id: Int
-    let title, productDescription, category: String
+    let title, description, category: String
     let price, discountPercentage, rating: Double
     let stock: Int
     let tags: [String]

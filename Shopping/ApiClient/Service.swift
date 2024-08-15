@@ -16,6 +16,10 @@ struct Service {
         request(route: .getProductCategoryList, method: .get, completion: completion)
     }
     
+    func fetchProducts(byCategory category: String, completion: @escaping(Result<GetAllProductsResponse, Error>) -> Void) {
+            request(route: .getProductsByCategory(category), method: .get, completion: completion)
+        }
+    
     private func request<T: Decodable>(route: Route, method: Method, parameters: [String: Any]? = nil, completion: @escaping(Result<T, Error>) -> Void) {
         
         guard let request = createRequest(route: route, method: method, parameters: parameters) else {
@@ -58,6 +62,7 @@ struct Service {
                 let decodedData = try decoder.decode(T.self, from: data)
                 completion(.success(decodedData))
             } catch {
+                print("Decoding error: \(error)") 
                 completion(.failure(Error.errorDecoding))
             }
         case .failure(let error):

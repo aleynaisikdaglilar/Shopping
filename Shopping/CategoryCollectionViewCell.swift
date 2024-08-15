@@ -14,8 +14,9 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     private var nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         return label
     }()
     
@@ -32,7 +33,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     private func setUpLayer() {
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.lightGray.cgColor
-        contentView.layer.cornerRadius = 17.0 // Optional
+        contentView.layer.cornerRadius = 15.0
     }
     
     required init?(coder: NSCoder) {

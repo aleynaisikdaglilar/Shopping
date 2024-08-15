@@ -14,6 +14,7 @@ final class CategoryViewController: UIViewController {
     }
     
     private let categoryView = CategoryView()
+    private let productsListView = ProductsListView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +25,18 @@ final class CategoryViewController: UIViewController {
     
     private func prepareUI() {
         view.addSubview(categoryView)
+        view.addSubview(productsListView)
         
         NSLayoutConstraint.activate([
             categoryView.topAnchor.constraint(equalTo: view.topAnchor),
             categoryView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             categoryView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            categoryView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            categoryView.heightAnchor.constraint(equalToConstant: 280),
+            
+            productsListView.topAnchor.constraint(equalTo: categoryView.bottomAnchor),
+            productsListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            productsListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            productsListView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-   
-
 }

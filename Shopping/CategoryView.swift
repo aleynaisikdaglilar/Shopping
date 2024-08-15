@@ -22,13 +22,6 @@ final class CategoryView: UIView {
         return scrollView
     }()
     
-    //    private lazy var collectionView: UIView = {
-    //        let scrollView = UIView()
-    //        scrollView.translatesAutoresizingMaskIntoConstraints = false
-    //        scrollView.backgroundColor = .red
-    //        return scrollView
-    //    }()
-    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -45,19 +38,10 @@ final class CategoryView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(scrollView)
         addSubview(collectionView)
-//        setupBindings()
         viewModel.configureCollectionView(collectionView)
         viewModel.fetchCategories()
         addConstraints()
         
-    }
-    
-    private func setupBindings() {
-        viewModel.reloadCollectionView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -79,8 +63,5 @@ final class CategoryView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: safeguide.trailingAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 70),
         ])
-        
     }
-    
-    
 }
