@@ -10,21 +10,12 @@ import UIKit
 final class CategoryViewViewModel: NSObject {
     
     private var categories: [String] = []
+    
+    weak var delegate: CategorySelectionDelegate?
+    
     private var products: [Product] = []
     
     var reloadCollectionView: (() -> Void)?
-    
-    func fetchProducts(forCategory category: String) {
-            Service.shared.fetchProducts(byCategory: category) { [weak self] result in
-                switch result {
-                case .success(let products):
-                    self?.products = products.products
-//                    self?.reloadProductListView?()
-                case .failure(let error):
-                    print("Failed to fetch products: \(error)")
-                }
-            }
-        }
     
     func fetchCategories() {
         Service.shared.fetchCategories { [weak self] result in
@@ -96,6 +87,10 @@ extension CategoryViewViewModel: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let category = categories[indexPath.item]
-        print(category)
+        if let delegate = delegate {
+            delegate.didSelectCategory(category)
+        } else {
+            print("Delegate is nil") // Debugging line
+        }
     }
 }

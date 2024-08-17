@@ -62,9 +62,12 @@ final class ProductsListViewCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        // Update mask after the layout is set
         imageView.layoutIfNeeded()
         applyTopCornersRadius()
+    }
+    
+    func configure(with product: Product) {
+        print(product.brand)
+        print(product.price)
     }
 }

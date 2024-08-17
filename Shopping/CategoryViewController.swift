@@ -21,6 +21,8 @@ final class CategoryViewController: UIViewController {
         view.backgroundColor = Constant.backgroundColor
         title = "Categories"
         prepareUI()
+        
+        categoryView.viewModel.delegate = productsListView.viewModel
     }
     
     private func prepareUI() {

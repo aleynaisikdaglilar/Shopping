@@ -13,7 +13,7 @@ final class ProductsListView: UIView {
         static let contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
-    private let viewModel = ProductsListViewViewModel()
+     let viewModel = ProductsListViewViewModel()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -32,7 +32,6 @@ final class ProductsListView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(collectionView)
         viewModel.configureCollectionView(collectionView)
-//        viewModel.fetchCategories()
         addConstraints()
     }
     

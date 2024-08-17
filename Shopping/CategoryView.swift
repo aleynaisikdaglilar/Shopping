@@ -13,7 +13,7 @@ final class CategoryView: UIView {
         static let contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
-    private let viewModel = CategoryViewViewModel()
+     let viewModel = CategoryViewViewModel()
     
     private lazy var scrollView: UIView = {
         let scrollView = UIView()
@@ -41,7 +41,6 @@ final class CategoryView: UIView {
         viewModel.configureCollectionView(collectionView)
         viewModel.fetchCategories()
         addConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
