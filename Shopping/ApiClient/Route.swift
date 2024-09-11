@@ -13,6 +13,7 @@ enum Route {
     
     case getProductCategoryList
     case getProductsByCategory(String)
+    case getAllProducts
     
     var description: String {
         
@@ -21,6 +22,8 @@ enum Route {
             return "/products/category-list"
         case .getProductsByCategory(let category):
             return "/products/category/\(category)"
+        case .getAllProducts:
+            return "/products"
         }
     }   
 }

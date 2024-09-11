@@ -40,6 +40,7 @@ final class CategoryView: UIView {
         addSubview(collectionView)
         viewModel.configureCollectionView(collectionView)
         viewModel.fetchCategories()
+        viewModel.fetchAllProducts()
         addConstraints()
     }
     

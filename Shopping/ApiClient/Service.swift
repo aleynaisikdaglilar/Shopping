@@ -20,6 +20,10 @@ struct Service {
             request(route: .getProductsByCategory(category), method: .get, completion: completion)
         }
     
+    func fetchAllProducts(completion: @escaping(Result<GetAllProductsResponse, Error>) -> Void) {
+        request(route: .getAllProducts, method: .get, completion: completion)
+    }
+    
     private func request<T: Decodable>(route: Route, method: Method, parameters: [String: Any]? = nil, completion: @escaping(Result<T, Error>) -> Void) {
         
         guard let request = createRequest(route: route, method: method, parameters: parameters) else {

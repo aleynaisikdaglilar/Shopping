@@ -21,7 +21,8 @@ final class CategoryViewViewModel: NSObject {
         Service.shared.fetchCategories { [weak self] result in
             switch result {
             case .success(let categories):
-                if let processedCategories = self?.processCategories(categories) {
+                if var processedCategories = self?.processCategories(categories) {
+                    processedCategories.insert("All", at: 0)
                     self?.categories = processedCategories
                     self?.reloadCollectionView?()
                 }
@@ -31,6 +32,22 @@ final class CategoryViewViewModel: NSObject {
             }
         }
     }
+    
+    func fetchAllProducts() {
+        Service.shared.fetchAllProducts { [weak self] result in
+            switch result {
+            case .success(let response):
+                // Tüm ürünleri burada alıyorsunuz, products dizisine atıyoruz.
+                self?.products = response.products
+                // Koleksiyonu yeniden yükleme işlemi yapıyoruz
+                self?.reloadCollectionView?()
+                
+            case .failure(let error):
+                print("Failed to fetch products: \(error)")
+            }
+        }
+    }
+    
     
     private func processCategories(_ categories: [String]) -> [String] {
         return categories.map { category in
@@ -82,15 +99,22 @@ extension CategoryViewViewModel: UICollectionViewDataSource, UICollectionViewDel
         let cellWidth = textSize.width + padding
         let minWidth: CGFloat = 50.0
         
-        return CGSize(width: max(cellWidth, minWidth), height: 40) 
+        return CGSize(width: max(cellWidth, minWidth), height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let category = categories[indexPath.item]
-        if let delegate = delegate {
-            delegate.didSelectCategory(category)
+        
+        if category == "All" {
+            // "All" kategorisi seçildiyse tüm ürünleri çekiyoruz
+            delegate?.didSelectCategory("All")
         } else {
-            print("Delegate is nil") // Debugging line
+            // Normal kategori seçimi ile işlem yapıyoruz
+            if let delegate = delegate {
+                delegate.didSelectCategory(category)
+            } else {
+                print("Delegate is nil") // Debugging line
+            }
         }
     }
 }

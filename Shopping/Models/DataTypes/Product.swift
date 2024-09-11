@@ -13,7 +13,8 @@ struct Product: Codable {
     let price, discountPercentage, rating: Double
     let stock: Int
     let tags: [String]
-    let brand, sku: String
+    let brand: String?
+    let sku: String
     let weight: Int
     let dimensions: Dimensions
     let warrantyInformation, shippingInformation, availabilityStatus: String

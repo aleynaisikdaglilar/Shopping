@@ -22,7 +22,7 @@ final class ProductsListView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.contentInset = Constant.contentInset
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .orange
+        collectionView.backgroundColor = UIColor(red: 254, green: 254, blue: 254, alpha: 1)
         collectionView.register(ProductsListViewCollectionViewCell.self, forCellWithReuseIdentifier: ProductsListViewCollectionViewCell.cellIdentifier)
         return collectionView
     }()

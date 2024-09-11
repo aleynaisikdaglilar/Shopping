@@ -13,6 +13,7 @@ enum Error: LocalizedError {
     case unknownError
     case invalidUrl
     case serverError(String)
+    case badServerResponse
     
     var errorDescription: String? {
         
@@ -25,6 +26,8 @@ enum Error: LocalizedError {
             return "Invalid Url"
         case .serverError(let error):
             return error
+        case .badServerResponse:
+            return "Bad Server Response"
         }
     }
 }
